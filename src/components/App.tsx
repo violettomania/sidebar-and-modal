@@ -1,11 +1,17 @@
+import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { links, social } from '../data';
 
 export default function App() {
+  const [showSidebar, setShowSidebar] = useState(false);
+
   return (
     <>
       <main>
-        <button className='sidebar-toggle'>
+        <button
+          className='sidebar-toggle'
+          onClick={() => setShowSidebar(!showSidebar)}
+        >
           <FaBars />
         </button>
         <button className='btn'>show modal</button>
@@ -18,14 +24,10 @@ export default function App() {
           </button>
         </div>
       </div>
-      <aside className='sidebar'>
+      <aside className={showSidebar ? 'show-sidebar sidebar' : 'sidebar'}>
         <div className='sidebar-header'>
-          <img
-            src='/assets/logo-ddc33e51.svg'
-            className='logo'
-            alt='coding addict'
-          />
-          <button className='close-btn'>
+          <img src='/assets/logo.svg' className='logo' alt='coding addict' />
+          <button className='close-btn' onClick={() => setShowSidebar(false)}>
             <FaTimes />
           </button>
         </div>
