@@ -4,27 +4,30 @@ import { links, social } from '../data';
 
 export default function App() {
   const [showSidebar, setShowSidebar] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
       <main>
-        <button
-          className='sidebar-toggle'
-          onClick={() => setShowSidebar(!showSidebar)}
-        >
+        <button className='sidebar-toggle' onClick={() => setShowSidebar(true)}>
           <FaBars />
         </button>
-        <button className='btn'>show modal</button>
+        <button className='btn' onClick={() => setShowModal(true)}>
+          show modal
+        </button>
       </main>
-      <div className='modal-overlay'>
+      <div className={`modal-overlay ${showModal && 'show-modal'}`}>
         <div className='modal-container'>
           <h3>modal content</h3>
-          <button className='close-modal-btn'>
+          <button
+            className='close-modal-btn'
+            onClick={() => setShowModal(false)}
+          >
             <FaTimes />
           </button>
         </div>
       </div>
-      <aside className={showSidebar ? 'show-sidebar sidebar' : 'sidebar'}>
+      <aside className={`sidebar ${showSidebar && 'show-sidebar'}`}>
         <div className='sidebar-header'>
           <img src='/assets/logo.svg' className='logo' alt='coding addict' />
           <button className='close-btn' onClick={() => setShowSidebar(false)}>
