@@ -4,11 +4,11 @@ import { FaTimes } from 'react-icons/fa';
 import { links, social } from '../data';
 
 export default function Sidebar() {
-  const sidebarState = useAppSelector((state) => state.sidebar.value);
+  const isSidebarShown = useAppSelector((state) => state.sidebar.value);
   const dispatch = useAppDispatch();
 
   return (
-    <aside className={`sidebar ${sidebarState && 'show-sidebar'}`}>
+    <aside className={`sidebar ${isSidebarShown && 'show-sidebar'}`}>
       <div className='sidebar-header'>
         <img src='/assets/logo.svg' className='logo' alt='coding addict' />
         <button className='close-btn' onClick={() => dispatch(hideSidebar())}>
