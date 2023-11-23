@@ -1,16 +1,20 @@
-import { useState } from 'react';
+import { useAppDispatch } from '../hooks/hooks';
+import { showModal } from '../slices/modalSlice';
+import { showSidebar } from '../slices/sidebarSlice';
 import { FaBars } from 'react-icons/fa';
 
 export default function Main() {
-  const [showModal, setShowModal] = useState(false);
-  const [showSidebar, setShowSidebar] = useState(false);
+  const dispatch = useAppDispatch();
 
   return (
     <main>
-      <button className='sidebar-toggle' onClick={() => setShowSidebar(true)}>
+      <button
+        className='sidebar-toggle'
+        onClick={() => dispatch(showSidebar())}
+      >
         <FaBars />
       </button>
-      <button className='btn' onClick={() => setShowModal(true)}>
+      <button className='btn' onClick={() => dispatch(showModal())}>
         show modal
       </button>
     </main>

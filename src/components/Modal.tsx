@@ -1,14 +1,19 @@
-import { useState } from 'react';
+import { useAppSelector, useAppDispatch } from '../hooks/hooks';
+import { hideModal } from '../slices/modalSlice';
 import { FaTimes } from 'react-icons/fa';
 
 export default function Modal() {
-  const [showModal, setShowModal] = useState(false);
+  const modalState = useAppSelector((state) => state.modal.value);
+  const dispatch = useAppDispatch();
 
   return (
-    <div className={`modal-overlay ${showModal && 'show-modal'}`}>
+    <div className={`modal-overlay ${modalState && 'show-modal'}`}>
       <div className='modal-container'>
         <h3>modal content</h3>
-        <button className='close-modal-btn' onClick={() => setShowModal(false)}>
+        <button
+          className='close-modal-btn'
+          onClick={() => dispatch(hideModal())}
+        >
           <FaTimes />
         </button>
       </div>

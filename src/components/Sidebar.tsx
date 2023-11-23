@@ -1,15 +1,17 @@
-import { useState } from 'react';
+import { useAppSelector, useAppDispatch } from '../hooks/hooks';
+import { hideSidebar } from '../slices/sidebarSlice';
 import { FaTimes } from 'react-icons/fa';
 import { links, social } from '../data';
 
 export default function Sidebar() {
-  const [showSidebar, setShowSidebar] = useState(false);
+  const sidebarState = useAppSelector((state) => state.sidebar.value);
+  const dispatch = useAppDispatch();
 
   return (
-    <aside className={`sidebar ${showSidebar && 'show-sidebar'}`}>
+    <aside className={`sidebar ${sidebarState && 'show-sidebar'}`}>
       <div className='sidebar-header'>
         <img src='/assets/logo.svg' className='logo' alt='coding addict' />
-        <button className='close-btn' onClick={() => setShowSidebar(false)}>
+        <button className='close-btn' onClick={() => dispatch(hideSidebar())}>
           <FaTimes />
         </button>
       </div>
