@@ -1,25 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { RootState } from '../store/store'
+import { createSlice } from '@reduxjs/toolkit';
+import type { RootState } from '../store/store';
 
 interface ModalState {
-    value: boolean;
-};
+  value: boolean;
+}
 
 const initialState: ModalState = {
-    value: false,
+  value: false,
 };
 
 export const modalSlice = createSlice({
-    name: 'modal',
-    initialState,
-    reducers: {
-        show: state => {
-            state.value = true;
-        },
-        hide: state => {
-            state.value = false;
-        },
-    }
+  name: 'modal',
+  initialState,
+  reducers: {
+    show: (state) => {
+      state.value = true;
+    },
+    hide: (state) => {
+      state.value = false;
+    },
+  },
 });
 
 export const { show, hide } = modalSlice.actions;
